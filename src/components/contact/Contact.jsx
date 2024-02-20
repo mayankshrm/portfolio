@@ -11,8 +11,8 @@ const Contact = () => {
     
     const sendEmail = (e) => {
         e.preventDefault();
-console.log(form.current)
-       //emailjs.sendForm('service_w4tnqaq', 'template_1edg426', form.current, 'AkNtgB2prtafhLdML')
+
+       emailjs.sendForm('service_w4tnqaq', 'template_1edg426', form.current, 'AkNtgB2prtafhLdML')
         e.target.reset();
 
     };
