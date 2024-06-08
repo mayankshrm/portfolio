@@ -1,5 +1,6 @@
 # Portfolio Project
-![Screenshot](./src/assets/home.png)
+![image](https://github.com/mayankshrm/portfolio/assets/105127021/26d6e979-82c8-4f7d-bd5e-15b6899d38c7)
+
 This is a responsive portfolio site created with ReactJS and plain CSS that implements Swiper for sliding components and EmailJS for contact services.
 
 ### Project Features:
@@ -33,6 +34,3 @@ The form modal of the contact section is setup using SDK and an email template f
 
 ![Screenshot](./src/assets/emailjs.png)
 
-
-## Credit
-This project was built following a tutorial by Cryptical Coder. It can be found [here](https://www.youtube.com/watch?v=3aCoZudPEKE&t=143s&ab_channel=CrypticalCoder) if you'd like to give it a try.
