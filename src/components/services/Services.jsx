@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './services.css';
 import { HiOutlineClipboardList, HiOutlineArrowSmRight, HiOutlineCheckCircle, HiX } from 'react-icons/hi';
+import Reveal from '../common/Reveal';
 
 const Services = () => {
     const [toggleState, setToggleState] = useState(0);
@@ -11,9 +12,12 @@ const Services = () => {
 
     return (
     <section className="services section" id="services">
+        <Reveal>
         <h2 className="section__title">Services</h2>
         <span className="section__subtitle">Create + Collaborate</span>
-    
+        </Reveal>
+
+        <Reveal delay={0.1}>
         <div className="services__container container grid">
             <div className="services__content">
                 <div>
@@ -135,7 +139,7 @@ const Services = () => {
                 </div>
             </div>
         </div>
-        
+        </Reveal>
     </section>
   );
 }

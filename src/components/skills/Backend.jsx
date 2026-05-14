@@ -1,60 +1,29 @@
 import React from "react";
-import { HiCheckBadge } from "react-icons/hi2";
+import { SiNodedotjs, SiNestjs, SiExpress, SiPostgresql, SiMongodb, SiMysql } from "react-icons/si";
 
-const Backend = () => {
-    return(
-        <div className="skills__content">
-        <h3 className="skills__title">Backend Developer</h3>
-        <div className="skills__box">
-            <div className="skills__group">
-                <div className="skills__data">
-                    <HiCheckBadge />
-                    <div>
-                        <h3 className="skills__name">JavaScript</h3>
-                        <span className="skills__level">Intermediate</span>
+const items = [
+    { name: "Node.js", level: "Intermediate", Icon: SiNodedotjs },
+    { name: "NestJS", level: "Intermediate", Icon: SiNestjs },
+    { name: "Express.js", level: "Intermediate", Icon: SiExpress },
+    { name: "PostgreSQL", level: "Intermediate", Icon: SiPostgresql },
+    { name: "MongoDB", level: "Intermediate", Icon: SiMongodb },
+    { name: "MySQL", level: "Intermediate", Icon: SiMysql },
+];
+
+const Backend = () => (
+    <div className="skills__content">
+        <div className="skills__grid">
+            {items.map(({ name, level, Icon }) => (
+                <div className="skill" key={name}>
+                    <span className="skill__icon"><Icon /></span>
+                    <div className="skill__text">
+                        <span className="skill__name">{name}</span>
+                        <span className="skill__level">{level}</span>
                     </div>
                 </div>
-                <div className="skills__data">
-                    <HiCheckBadge />
-                    <div>
-                        <h3 className="skills__name">Express.js</h3>
-                        <span className="skills__level">Intermediate</span>
-                    </div>
-                </div>
-                <div className="skills__data">
-                    <HiCheckBadge />
-                    <div>
-                        <h3 className="skills__name">MySQL</h3>
-                        <span className="skills__level">Basic</span>
-                    </div>
-                </div>
-            </div>
-            <div className="skills__group">
-                <div className="skills__data">
-                    <HiCheckBadge />
-                    <div>
-                        <h3 className="skills__name">MongoDB</h3>
-                        <span className="skills__level">Intermediate</span>
-                    </div>
-                </div>
-                <div className="skills__data">
-                    <HiCheckBadge />
-                    <div>
-                        <h3 className="skills__name">Node.js</h3>
-                        <span className="skills__level">Intermediate</span>
-                    </div>
-                </div>
-                <div className="skills__data">
-                    <HiCheckBadge />
-                    <div>
-                        <h3 className="skills__name">Git/Github</h3>
-                        <span className="skills__level">Intermediate</span>
-                    </div>
-                </div>
-            </div>
+            ))}
         </div>
     </div>
-    );
-}
+);
 
 export default Backend;

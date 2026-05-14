@@ -1,15 +1,13 @@
 import React from "react";
-import { SiReact, SiNextdotjs, SiJavascript, SiHtml5, SiCss3 } from "react-icons/si";
+import { SiMicrosoftazure, SiGit, SiGithub } from "react-icons/si";
 
 const items = [
-    { name: "React", level: "Intermediate", Icon: SiReact },
-    { name: "Next.js", level: "Intermediate", Icon: SiNextdotjs },
-    { name: "JavaScript", level: "Intermediate", Icon: SiJavascript },
-    { name: "HTML", level: "Intermediate", Icon: SiHtml5 },
-    { name: "CSS", level: "Intermediate", Icon: SiCss3 },
+    { name: "Microsoft Azure", level: "Intermediate", Icon: SiMicrosoftazure },
+    { name: "Git", level: "Intermediate", Icon: SiGit },
+    { name: "GitHub", level: "Intermediate", Icon: SiGithub },
 ];
 
-const Frontend = () => (
+const Cloud = () => (
     <div className="skills__content">
         <div className="skills__grid">
             {items.map(({ name, level, Icon }) => (
@@ -25,4 +23,4 @@ const Frontend = () => (
     </div>
 );
 
-export default Frontend;
+export default Cloud;

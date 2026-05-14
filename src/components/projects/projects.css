@@ -1,114 +1,200 @@
-.project__filters {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    column-gap: 0.75rem;
-    margin-bottom: var(--mb-2);
+.portfolio__head {
+    max-width: 760px;
+    margin: 0 auto 3rem;
 }
 
-.project__item {
-    color: var(--container-color);
-    padding: 0.25rem 0.75rem;
-    background-color: var(--title-color);
+.portfolio__kicker {
+    display: inline-block;
+    font-size: var(--smaller-font-size);
+    color: var(--accent);
     font-weight: var(--font-medium);
-    border-radius: 0.5rem;
-    text-transform: capitalize;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.85rem;
 }
 
-.project__item:hover {
-    background-color: var(--title-color);
-    color: var(--container-color);
+.portfolio__title {
+    font-size: clamp(1.85rem, 5vw, 2.5rem);
+    color: var(--title-color);
+    letter-spacing: -0.025em;
+    margin-bottom: 0.85rem;
+    line-height: 1.15;
+}
+
+.portfolio__lede {
+    color: var(--text-color);
+    font-size: clamp(0.95rem, 2vw, 1rem);
+    line-height: 1.6;
 }
 
 .project__container {
-    grid-template-columns: repeat(2, max-content);
-    gap: 3rem;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
 }
 
 .project__card {
-    background-color: var(--container-color);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    padding: 1.25rem;
-    border-radius: 1rem;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border-subtle);
+    padding: 1.1rem;
+    border-radius: 14px;
+    box-shadow: var(--shadow-card);
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    transition: border-color .25s ease, transform .25s ease;
+}
+
+.project__card:hover {
+    border-color: hsla(210, 50%, 60%, 0.4);
+    transform: translateY(-3px);
+}
+
+.project__media {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border-radius: 8px;
+    background: var(--bg-overlay);
+    border: 1px solid var(--border-subtle);
 }
 
 .project__img {
-    width: 295px;
-    border-radius: 1rem;
-    margin-bottom: var(--mb-1);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(0.3);
+    transition: transform .5s ease, filter .4s ease;
+}
+
+.project__card:hover .project__img {
+    transform: scale(1.04);
+    filter: grayscale(0);
+}
+
+.project__badge {
+    position: absolute;
+    top: 0.65rem;
+    left: 0.65rem;
+    padding: 0.25rem 0.55rem;
+    border-radius: 999px;
+    font-size: var(--smallest-font-size);
+    font-weight: var(--font-semibold);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--accent-contrast);
+    background: var(--accent);
 }
 
 .project__title {
-    font-size: var(--normal-font-size);
+    font-size: 1.1rem;
+    font-weight: var(--font-semibold);
+    color: var(--title-color);
+    letter-spacing: -0.015em;
+}
+
+.project__desc {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    line-height: 1.55;
+}
+
+.project__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+}
+
+.project__tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: var(--smallest-font-size);
     font-weight: var(--font-medium);
-    margin-bottom: var(--mb-0-5);
+    color: var(--accent);
+    background: hsla(210, 50%, 60%, 0.1);
+    border: 1px solid hsla(210, 50%, 60%, 0.25);
+    padding: 0.18rem 0.5rem;
+    border-radius: 999px;
+}
+
+.project__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: auto;
+    padding-top: 0.4rem;
 }
 
 .project__button {
-    color: var(--text-color);
-    font-size: var(--small-font-size);
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    column-gap: 0.25rem;
+    column-gap: 0.35rem;
+    padding: 0.4rem 0.75rem;
+    border-radius: 6px;
+    color: var(--text-color);
+    background: var(--bg-overlay);
+    border: 1px solid var(--border-subtle);
+    font-size: var(--small-font-size);
+    font-weight: var(--font-medium);
+    transition: color .25s ease, transform .25s ease, border-color .25s ease;
+}
+
+.project__button:hover {
+    color: var(--accent);
+    border-color: hsla(210, 50%, 60%, 0.4);
+    transform: translateY(-1px);
+}
+
+.project__button--primary {
+    background: var(--accent);
+    color: var(--accent-contrast);
+    border-color: transparent;
+}
+
+.project__button--primary:hover {
+    color: var(--accent-contrast);
+    background: var(--accent-hover);
+}
+
+.project__button--disabled {
+    opacity: 0.55;
+    cursor: default;
+    pointer-events: none;
 }
 
 .project__button-icon {
     font-size: 1rem;
-    transition: 0.4s;
+    transition: transform 0.3s ease;
 }
 
-.project__button:hover .project__button-icon{
-    transform: translateX(0.25rem);
-}
-
-/* ACTIVE PROJECT */
-.active__project {
-    background-color: var(--title-color);
-    color: var(--container-color);
+.project__button:hover .project__button-icon {
+    transform: translateX(0.2rem);
 }
 
 /* BREAK POINTS */
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 768px) {
     .project__container {
-        gap: 1.25rem;
+        grid-template-columns: 1fr;
+        max-width: 480px;
     }
 
+    .portfolio__head {
+        margin-bottom: 2rem;
+    }
+
+    .portfolio__lede {
+        font-size: 0.97rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
     .project__card {
         padding: 1rem;
     }
 
-    .project__img {
-        margin-bottom: 0.75rem;
-    }
-
     .project__title {
-        margin-bottom: 0.25rem;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .project__container {
-        grid-template-columns: max-content;
-    }
-}
-
-@media screen and (max-width: 576px) {
-    .project__container {
-        grid-template-columns: 1fr;
-    }
-
-    .project__img {
-        width: 100%;
-    }
-}
-
-@media screen and (max-width: 350px) {
-    .project__item {
-        font-size: var(--small-font-size);
-    }
-
-    .project__filters {
-        column-gap: 0.25rem;
+        font-size: 1.05rem;
     }
 }

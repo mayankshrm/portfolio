@@ -1,117 +1,93 @@
-import React, { useState } from "react";
+import React from "react";
 import "./qualification.css";
 import { HiOutlineAcademicCap, HiOutlineBriefcase, HiOutlineCalendar } from "react-icons/hi";
+import Reveal from "../common/Reveal";
 
-const Qualification = () => {
-    const [toggleState, setToggleState] = useState(1)
+const experience = [
+    {
+        title: "Software Developer",
+        org: "Tata Consultancy Services",
+        date: "2025 — Present",
+        note: "Shipping internal tooling and platform work.",
+    },
+    {
+        title: "SDE",
+        org: "NYX",
+        date: "2024 — 2025",
+        note: "Worked across the stack on customer-facing product surfaces.",
+    },
+];
 
-    const toggleTab = (index) => {
-        setToggleState(index);
-    };
-  
-    return (
-    <section className="qualification section">
-        <h2 className="section__title">Qualification</h2>
-        <span className="section__subtitle">My Journey</span>
+const education = [
+    {
+        title: "B.Tech, Electronics & Communication",
+        org: "GGSIPU",
+        date: "2020 — 2024",
+        note: "Engineering foundation · self-taught the rest.",
+    },
+    {
+        title: "Senior Secondary",
+        org: "Laxmi Public School",
+        date: "2018 — 2020",
+    },
+    {
+        title: "Secondary",
+        org: "Laxmi Public School",
+        date: "2017 — 2018",
+    },
+];
 
-        <div className="qualification__container container">
-            <div className="qualification__tabs">
-                <div className={toggleState === 1 ? "qualification__button button--flex qualification__active" 
-                    : "qualification__button button--flex"} onClick={() => toggleTab(1)}>
-                    <HiOutlineAcademicCap className="qualification__icon" />
-                    Education
-                </div>
-                <div className={toggleState === 2 ? "qualification__button button--flex qualification__active" 
-                    : "qualification__button button--flex"} onClick={() => toggleTab(2)}>
-                    <HiOutlineBriefcase className="qualification__icon" />
-                    Experience
-                </div>
+const TimelineColumn = ({ icon: Icon, label, items }) => (
+    <div className="ql-col">
+        <header className="ql-col__head">
+            <span className="ql-col__icon"><Icon /></span>
+            <h3 className="ql-col__label">{label}</h3>
+        </header>
+
+        <ol className="ql-col__list">
+            {items.map((item, i) => (
+                <li className="ql-entry" key={`${item.org}-${i}`}>
+                    <span className="ql-entry__rail" aria-hidden="true">
+                        <span className="ql-entry__dot" />
+                        {i < items.length - 1 && <span className="ql-entry__line" />}
+                    </span>
+
+                    <div className="ql-entry__body">
+                        <div className="ql-entry__date">
+                            <HiOutlineCalendar /> {item.date}
+                        </div>
+                        <h4 className="ql-entry__title">{item.title}</h4>
+                        <p className="ql-entry__org">{item.org}</p>
+                        {item.note && <p className="ql-entry__note">{item.note}</p>}
+                    </div>
+                </li>
+            ))}
+        </ol>
+    </div>
+);
+
+const Qualification = () => (
+    <section className="qualification section" id="qualification">
+        <Reveal>
+            <div className="qualification__head container">
+                <span className="qualification__kicker">
+                    <HiOutlineBriefcase /> Journey
+                </span>
+                <h2 className="qualification__title">Where I've been</h2>
+                <p className="qualification__lede">
+                    Work and study, side by side. Reverse-chronological so the most
+                    recent thing is at the top.
+                </p>
             </div>
+        </Reveal>
 
-            <div className="qualification__sections">
-                <div className={toggleState === 1 ? "qualification__content qualification__content-active"
-                    : "qualification__content"}>
-                    <div className="qualification__data">
-                        <div>
-                            <h3 className="qualification__title">Secondary</h3>
-                            <span className="qualification__subtitle">Laxmi Public School</span>
-                            <div className="qualification__calendar">
-                                <HiOutlineCalendar className="qualification__calendar-icon" />
-                                2017-2018
-                            </div>
-                        </div>
-                        <div>
-                            <span className="qualification__rounder"></span>
-                            <span className="qualification__line"></span>
-                        </div>
-                    </div>
-                    <div className="qualification__data">
-                        <div></div>
-                        <div>
-                            <span className="qualification__rounder"></span>
-                            <span className="qualification__line"></span>
-                        </div>
-                        <div>
-                            <h3 className="qualification__title">Senior Secondary</h3>
-                            <span className="qualification__subtitle">laxmi Public School</span>
-                            <div className="qualification__calendar">
-                                <HiOutlineCalendar className="qualification__calendar-icon" />
-                                2018-2020
-                            </div>
-                        </div>
-                    </div>
-                    <div className="qualification__data">
-                        <div>
-                            <h3 className="qualification__title">Btech ECE</h3>
-                            <span className="qualification__subtitle">GGSIPU</span>
-                            <div className="qualification__calendar">
-                                <HiOutlineCalendar className="qualification__calendar-icon" />
-                                2020-2024
-                            </div>
-                        </div>
-                        <div>
-                            <span className="qualification__rounder"></span>
-                            <span className="qualification__line"></span>
-                        </div>
-                    </div>
-                </div>
-                <div className={toggleState === 2 ? "qualification__content qualification__content-active"
-                    : "qualification__content"}>
-                    <div className="qualification__data">
-                        <div>
-                            <h3 className="qualification__title">Social Media Management</h3>
-                            <span className="qualification__subtitle">Exposys Data Labs</span>
-                            <div className="qualification__calendar">
-                                <HiOutlineCalendar className="qualification__calendar-icon" />
-                                2021
-                            </div>
-                        </div>
-                        <div>
-                            <span className="qualification__rounder"></span>
-                            <span className="qualification__line"></span>
-                        </div>
-                    </div>
-  
-                    <div className="qualification__data">
-                        <div></div>
-                        <div>
-                            <span className="qualification__rounder"></span>
-                            <span className="qualification__line"></span>
-                        </div>
-                        <div>
-                            <h3 className="qualification__title">Full-Stack Developer</h3>
-                            <span className="qualification__subtitle">S I B I L I Z E</span>
-                            <div className="qualification__calendar">
-                                <HiOutlineCalendar className="qualification__calendar-icon" />
-                                Jan'23-May'23
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <Reveal delay={0.1}>
+            <div className="qualification__grid container">
+                <TimelineColumn icon={HiOutlineBriefcase} label="Experience" items={experience} />
+                <TimelineColumn icon={HiOutlineAcademicCap} label="Education" items={education} />
             </div>
-        </div>
-    </section> 
-  );
-}
+        </Reveal>
+    </section>
+);
 
 export default Qualification;

@@ -1,69 +1,75 @@
-import React, {useState} from "react";
+import React, { useEffect, useState } from "react";
 import './header.css';
-import { HiOutlineHome, HiOutlineUser, HiOutlineBadgeCheck, HiOutlineClipboardList, HiOutlinePhotograph, HiOutlineMail, HiX, HiOutlineMenu } from "react-icons/hi";
+import {
+    HiOutlineHome, HiOutlineUser, HiOutlineBadgeCheck,
+    HiOutlinePhotograph, HiOutlineMail, HiOutlineSparkles, HiX, HiOutlineMenu,
+    HiOutlineSun, HiOutlineMoon
+} from "react-icons/hi";
+import { useTheme } from "../../hooks/useTheme";
 
+const navItems = [
+    { href: "#home", label: "Home", Icon: HiOutlineHome },
+    { href: "#about", label: "About", Icon: HiOutlineUser },
+    { href: "#skills", label: "Skills", Icon: HiOutlineBadgeCheck },
+    { href: "#featured", label: "Work", Icon: HiOutlineSparkles },
+    { href: "#portfolio", label: "Projects", Icon: HiOutlinePhotograph },
+    { href: "#contact", label: "Contact", Icon: HiOutlineMail },
+];
 
 const Header = () => {
-    window.addEventListener("scroll", function () {
-        const header = document.querySelector(".header");
-        if(this.scrollY >= 80) header.classList.add("scroll-header");
-        else header.classList.remove("scroll-header");
-    });
-   
-    const[Toggle, showMenu] = useState(false);
-    const[activeNav, setActiveNav] = useState("#home");
+    const [Toggle, showMenu] = useState(false);
+    const [activeNav, setActiveNav] = useState("#home");
+    const { theme, toggleTheme } = useTheme();
 
-    return(
+    useEffect(() => {
+        const onScroll = () => {
+            const header = document.querySelector(".header");
+            if (!header) return;
+            if (window.scrollY >= 80) header.classList.add("scroll-header");
+            else header.classList.remove("scroll-header");
+        };
+        window.addEventListener("scroll", onScroll);
+        return () => window.removeEventListener("scroll", onScroll);
+    }, []);
+
+    return (
         <header className="header">
             <nav className="nav container">
-                <a href="index.html" className="nav__logo">Portfolio</a>
+                <a href="#home" className="nav__logo">Mayank<span className="nav__logo-dot">.</span></a>
                 <div className={Toggle ? "nav__menu show-menu" : "nav__menu"}>
                     <ul className="nav__list grid">
-                        <li className="nav__item">
-                            <a href="#home" onClick={() => setActiveNav("#home")} 
-                            className={activeNav === "#home" ? "nav__link active-link" : "nav__link"}>
-                                <HiOutlineHome className="nav__icon"/>Home
-                            </a>
-                        </li>
-                        <li className="nav__item">
-                            <a href="#about" onClick={() => setActiveNav("#about")} 
-                            className={activeNav === "#about" ? "nav__link active-link" : "nav__link"}>
-                                <HiOutlineUser className="nav__icon"/>About
-                            </a>
-                        </li>
-                        <li className="nav__item">
-                            <a href="#skills" onClick={() => setActiveNav("#skills")} 
-                            className={activeNav === "#skills" ? "nav__link active-link" : "nav__link"}>
-                                <HiOutlineBadgeCheck className="nav__icon"/>Skills
-                            </a>
-                        </li>
-                        <li className="nav__item">
-                            <a href="#services" onClick={() => setActiveNav("#services")} 
-                            className={activeNav === "#services" ? "nav__link active-link" : "nav__link"}>
-                                <HiOutlineClipboardList className="nav__icon"/>Services
-                            </a>
-                        </li>
-                        <li className="nav__item">
-                            <a href="#portfolio" onClick={() => setActiveNav("#portfolio")} 
-                            className={activeNav === "#portfolio" ? "nav__link active-link" : "nav__link"}>
-                                <HiOutlinePhotograph className="nav__icon"/>Projects
-                            </a>
-                        </li>
-                        <li className="nav__item">
-                            <a href="#contact" onClick={() => setActiveNav("#contact")} 
-                            className={activeNav === "#contact" ? "nav__link active-link" : "nav__link"}>
-                                <HiOutlineMail className="nav__icon"/>Contact
-                            </a>
-                        </li>
+                        {navItems.map(({ href, label, Icon }) => (
+                            <li className="nav__item" key={href}>
+                                <a
+                                    href={href}
+                                    onClick={() => { setActiveNav(href); showMenu(false); }}
+                                    className={activeNav === href ? "nav__link active-link" : "nav__link"}
+                                >
+                                    <Icon className="nav__icon" />{label}
+                                </a>
+                            </li>
+                        ))}
                     </ul>
                     <HiX className="nav__close" onClick={() => showMenu(!Toggle)} />
                 </div>
-                <div className="nav__toggle" onClick={() => showMenu(!Toggle)}>
-                    <HiOutlineMenu />
+
+                <div className="nav__actions">
+                    <button
+                        type="button"
+                        className="nav__theme-toggle"
+                        onClick={toggleTheme}
+                        aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
+                        title={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
+                    >
+                        {theme === "dark" ? <HiOutlineSun /> : <HiOutlineMoon />}
+                    </button>
+                    <div className="nav__toggle" onClick={() => showMenu(!Toggle)}>
+                        <HiOutlineMenu />
+                    </div>
                 </div>
             </nav>
         </header>
-    )
-}
+    );
+};
 
-export default Header
+export default Header;

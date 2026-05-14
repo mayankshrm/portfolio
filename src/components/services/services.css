@@ -6,27 +6,38 @@
 
 .services__content {
     position: relative;
-    border: 1px sold rgba(0, 0, 0, 1);
-    background-color: var(--container-color);
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 1.25rem;
     padding: 6rem 0 2rem 2.5rem;
+    transition: transform .3s ease, border-color .3s ease;
+}
+
+.services__content:hover {
+    transform: translateY(-4px);
+    border-color: hsla(210, 25%, 60%, 0.35);
 }
 
 .services__icon {
     display: block;
     font-size: 2rem;
-    color: var(--title-color);
+    color: var(--accent);
     margin-bottom: var(--mb-1);
 }
 
 .services__title {
     font-size: var(--h3-font-size);
     margin-bottom: var(--mb-1);
-    font-weight: var(--font-medium);
+    font-weight: var(--font-semibold);
+    color: var(--title-color);
 }
 
 .services__button {
-    color: var(--title-color);
+    color: var(--accent);
     font-size: var(--small-font-size);
+    font-weight: var(--font-medium);
     display: inline-flex;
     align-items: center;
     column-gap: 0.25rem;
@@ -39,16 +50,14 @@
 }
 
 .services__button:hover .services__button-icon {
-    transform: translateX(00.25rem);
+    transform: translateX(0.25rem);
 }
 
 .services__modal {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    inset: 0;
+    background-color: hsla(222, 40%, 4%, 0.7);
+    backdrop-filter: blur(4px);
     z-index: var(--z-modal);
     display: flex;
     justify-content: center;
@@ -61,10 +70,13 @@
 
 .services__modal-content {
     width: 500px;
+    max-width: 100%;
     position: relative;
-    background-color: var(--container-color);
+    background-color: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
     padding: 4.5rem 2.5rem 2.5rem;
     border-radius: 1.5rem;
+    box-shadow: var(--shadow-card);
 }
 
 .services__modal-close {
@@ -72,8 +84,13 @@
     top: 1.5rem;
     right: 1.5rem;
     font-size: 1.5rem;
-    color: var(--title-color);
+    color: var(--text-color);
     cursor: pointer;
+    transition: color .25s ease;
+}
+
+.services__modal-close:hover {
+    color: var(--accent);
 }
 
 .services__modal-title, .services__modal-description {
@@ -82,14 +99,16 @@
 
 .services__modal-title {
     font-size: var(--h3-font-size);
-    font-weight: var(--font-medium);
+    font-weight: var(--font-semibold);
     margin-bottom: var(--mb-1);
+    color: var(--title-color);
 }
 
 .services__modal-description {
     font-size: var(--small-font-size);
     padding: 0 3.5rem;
     margin-bottom: var(--mb-2);
+    color: var(--text-color);
 }
 
 .services__modal-services {
@@ -103,15 +122,15 @@
 }
 
 .services__modal-icon {
-    color: var(--title-color);
+    color: var(--accent);
     font-size: 1.1rem;
 }
 
 .services__modal-info {
     font-size: var(--small-font-size);
+    color: var(--text-color);
 }
 
-/* ACTIVE MODAL */
 .active-modal {
     opacity: 1;
     visibility: visible;
@@ -127,17 +146,19 @@
 @media screen and (max-width: 768px) {
     .services__container {
         grid-template-columns: repeat(1, 1fr);
+        max-width: 480px;
+        margin: 0 auto;
     }
-    
+
     .services__content {
-        padding: 3.5rem 0.5rem 1.25rem 1.5rem;
+        padding: 3.5rem 1.5rem 1.25rem 1.5rem;
     }
 
     .services__icon {
         font-size: 1.5rem;
     }
 }
- 
+
 @media screen and (max-width: 576px) {
     .services__modal-content {
         padding: 4.5rem 1.5rem 2.5rem;
@@ -146,14 +167,4 @@
     .services__modal-description {
         padding: 0;
     }
-}
-
-@media screen and (max-width: 350px) {
-   .services__container {
-        grid-template-columns: max-content;
-   }
-
-   .services__content {
-        padding-right: 6rem;
-   }
 }
